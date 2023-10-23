@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Playerr : MonoBehaviour
 {
-    public float speed = 20;
-    
+    public float speed = 100;
+    public string nextLevelName;
+
     // Start is called before the first frame update
     void Start()
     {
-   
+
     }
 
     // Update is called once per frame
@@ -26,10 +27,21 @@ public class Playerr : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("Wall"))
         {
-          SceneManager.LoadScene("MenuScene");
-           
+            SceneManager.LoadScene("MenuScene");
+
+        }
+        else
+        {
+            SceneManager.LoadScene(nextLevelName);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Contains("Teleport"))
+        {
+            SceneManager.LoadScene(nextLevelName);
+        }
 
-    
+    }
+
 }
